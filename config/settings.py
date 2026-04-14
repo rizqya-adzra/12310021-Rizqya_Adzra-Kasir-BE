@@ -25,7 +25,11 @@ INSTALLED_APPS = [
     'drf_yasg',                
     'drf_spectacular',
     'django_filters',         
-    'import_export',            
+    'import_export', 
+
+    'apps.user',
+    'apps.product',
+    'apps.transaction',           
 ]
 
 MIDDLEWARE = [
@@ -114,7 +118,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # --- CUSTOM USER MODEL ---
-# AUTH_USER_MODEL = 'user.CoreUser'
+AUTH_USER_MODEL = 'user.CoreUser'
 
 
 # --- SWAGGER ---
