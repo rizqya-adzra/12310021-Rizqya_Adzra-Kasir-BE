@@ -139,7 +139,7 @@ class ProductListCreateView(generics.ListCreateAPIView):
     pagination_class = CustomPagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = ProductFilter
-    search_fields = ['role', 'name', 'sku']
+    search_fields = ['name', 'sku']
     
     ordering_fields = '__all__'
     ordering = ['-created_at']
