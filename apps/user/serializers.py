@@ -89,14 +89,3 @@ class UserCreateSerializer(serializers.ModelSerializer):
             
         instance.save()
         return instance
-    
-    
-class ChangePasswordSerializer(serializers.Serializer):
-    old_password = serializers.CharField(required=True)
-    new_password = serializers.CharField(required=True, min_length=6)
-
-    def validate_old_password(self, value):
-        user = self.context['request'].user
-        if not user.check_password(value):
-            raise serializers.ValidationError("Password lama salah.")
-        return value

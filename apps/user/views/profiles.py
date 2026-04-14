@@ -7,7 +7,7 @@ from drf_spectacular.openapi import AutoSchema
 from django_filters.rest_framework import DjangoFilterBackend
 from utils.export import BaseExportExcelView
 
-from apps.user.serializers import MeSerializer, ChangePasswordSerializer, UserCreateSerializer
+from apps.user.serializers import MeSerializer, UserCreateSerializer
 from apps.user.models import CoreUser as User
 from utils.response import response_success, response_error 
 from utils.permissions import IsAdminRole
@@ -60,34 +60,6 @@ class MyProfileView(generics.RetrieveUpdateAPIView):
         )
         
         
-class ChangePasswordView(generics.UpdateAPIView):
-    serializer_class = ChangePasswordSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_object(self):
-        return self.request.user
-
-    def update(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        
-        if serializer.is_valid():
-            user = self.get_object()
-            
-            user.set_password(serializer.validated_data['new_password'])
-            user.save()
-            
-            try:
-                request.user.auth_token.delete()
-            except (AttributeError, Exception):
-                pass
-
-            return response_success(
-                message="Password berhasil diperbarui. Silakan login kembali."
-            )
-        
-        return response_error(message="Gagal ganti password", errors=serializer.errors)
-    
-
 class UserListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsAdminRole] 
     schema = AutoSchema()
