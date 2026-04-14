@@ -1,0 +1,27 @@
+# CORE DJANGO & DATABASE
+Django
+psycopg2-binary
+python-dotenv
+mysqlclient
+
+# MEDIA & FILES
+Pillow
+
+# EXPORT EXCEL
+django-import-export
+openpyxl
+
+# EXPORT PDF
+xhtml2pdf
+reportlab
+
+# FILTERING & SEARCH
+django-filter
+
+# REST API & CORS
+djangorestframework
+django-cors-headers
+
+# API DOCUMENTATION (SWAGGER)
+drf-yasg
+drf-spectacular
